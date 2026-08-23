@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-08-22T02:53:47.590992+00:00",
+  "updated_at": "2026-08-23T03:02:19.622799+00:00",
   "source": "https://models.dev/api.json",
   "models": {
     "deepseek/deepseek-v4-flash": {
@@ -1453,6 +1453,11 @@
       "tooluse": true,
       "reasoning": true
     },
+    "moonshotai/kimi-k3": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
+    },
     "moonshotai/kimi-k2-instruct-0905": {
       "vision": false,
       "tooluse": true,
@@ -1484,6 +1489,11 @@
       "reasoning": true
     },
     "deepseek-ai/deepseek-v4-pro": {
+      "vision": false,
+      "tooluse": true,
+      "reasoning": true
+    },
+    "deepseek-ai/deepseek-v4-flash-0731": {
       "vision": false,
       "tooluse": true,
       "reasoning": true
@@ -2883,6 +2893,11 @@
       "tooluse": true,
       "reasoning": true
     },
+    "google/gemma-4-26b-a4b-uncensored": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": false
+    },
     "google/gemma-4-31b-it:thinking": {
       "vision": true,
       "tooluse": true,
@@ -2969,11 +2984,6 @@
       "reasoning": true
     },
     "bytedance-seed/seed-2-1-turbo": {
-      "vision": true,
-      "tooluse": true,
-      "reasoning": true
-    },
-    "moonshotai/kimi-k3": {
       "vision": true,
       "tooluse": true,
       "reasoning": true
@@ -4254,6 +4264,11 @@
       "reasoning": true
     },
     "gemini-3.1-flash-lite-preview": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
+    },
+    "claude-fable-5@default": {
       "vision": true,
       "tooluse": true,
       "reasoning": true
@@ -7793,6 +7808,11 @@
       "tooluse": true,
       "reasoning": true
     },
+    "deepinfra/mimo-v2.5": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
+    },
     "deepinfra/nemotron-3-ultra-550b": {
       "vision": true,
       "tooluse": true,
@@ -7831,6 +7851,11 @@
     "deepinfra/glm-5.1": {
       "vision": false,
       "tooluse": true,
+      "reasoning": true
+    },
+    "deepinfra/mimo-v2.5-pro": {
+      "vision": false,
+      "tooluse": false,
       "reasoning": true
     },
     "deepinfra/hy3": {
@@ -7897,6 +7922,11 @@
       "vision": false,
       "tooluse": true,
       "reasoning": false
+    },
+    "novita/mimo-v2.5": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
     },
     "novita/llama-3.3-70b-instruct": {
       "vision": false,
@@ -8002,6 +8032,11 @@
       "vision": true,
       "tooluse": false,
       "reasoning": false
+    },
+    "novita/mimo-v2.5-pro": {
+      "vision": false,
+      "tooluse": true,
+      "reasoning": true
     },
     "novita/ernie-4.5-vl-424b-a47b": {
       "vision": true,
@@ -8137,11 +8172,6 @@
       "vision": true,
       "tooluse": true,
       "reasoning": true
-    },
-    "openai/gpt-4o-mini-search-preview": {
-      "vision": true,
-      "tooluse": false,
-      "reasoning": false
     },
     "together-ai/kimi-k3": {
       "vision": true,
@@ -12823,6 +12853,11 @@
       "tooluse": true,
       "reasoning": false
     },
+    "nvidia/nemotron-3.5-lightning-free": {
+      "vision": false,
+      "tooluse": true,
+      "reasoning": true
+    },
     "deepseek/deepseek-v3.2-thinking": {
       "vision": false,
       "tooluse": true,
@@ -13458,6 +13493,11 @@
       "tooluse": true,
       "reasoning": true
     },
+    "nebius/deepseek-ai/DeepSeek-V4-Flash-0731": {
+      "vision": false,
+      "tooluse": true,
+      "reasoning": true
+    },
     "nebius/meta-llama/Llama-3.3-70B-Instruct": {
       "vision": false,
       "tooluse": true,
@@ -14038,11 +14078,6 @@
       "tooluse": true,
       "reasoning": true
     },
-    "gpt-4o-search-preview": {
-      "vision": true,
-      "tooluse": false,
-      "reasoning": false
-    },
     "grok-4-20-beta-0309-reasoning": {
       "vision": true,
       "tooluse": true,
@@ -14071,11 +14106,6 @@
     "gemma-3-27b": {
       "vision": true,
       "tooluse": true,
-      "reasoning": false
-    },
-    "gpt-4o-mini-search-preview": {
-      "vision": true,
-      "tooluse": false,
       "reasoning": false
     },
     "llama-4-maverick-17b-instruct": {
@@ -14175,11 +14205,6 @@
     },
     "deepseek-v4-pro-lightning": {
       "vision": false,
-      "tooluse": true,
-      "reasoning": true
-    },
-    "kimi-k2.5-lightning": {
-      "vision": true,
       "tooluse": true,
       "reasoning": true
     },
