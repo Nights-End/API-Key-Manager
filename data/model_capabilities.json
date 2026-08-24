@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-08-23T03:02:19.622799+00:00",
+  "updated_at": "2026-08-24T03:03:24.720108+00:00",
   "source": "https://models.dev/api.json",
   "models": {
     "deepseek/deepseek-v4-flash": {
@@ -2183,6 +2183,11 @@
       "tooluse": true,
       "reasoning": true
     },
+    "Gemma-4-31B-MeroMero-v2": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
+    },
     "gemini-3-pro-image-preview": {
       "vision": true,
       "tooluse": false,
@@ -3269,6 +3274,11 @@
       "reasoning": true
     },
     "ornith-ai/ornith-1.5-35b-a3b:thinking": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
+    },
+    "ornith-ai/ornith-1.5-9b": {
       "vision": true,
       "tooluse": true,
       "reasoning": true
@@ -7638,6 +7648,41 @@
       "tooluse": true,
       "reasoning": true
     },
+    "vertexai/gemini-3.7-flash-eu": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
+    },
+    "vertexai/gemini-3.7-flash": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
+    },
+    "xai/grok-4.6": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
+    },
+    "mistral/devstral-2512": {
+      "vision": false,
+      "tooluse": true,
+      "reasoning": false
+    },
+    "mistral/mistral-small-2603": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
+    },
+    "mistral/mistral-large-2512": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": false
+    },
+    "minimax/m3": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
+    },
     "grok-imagine-video": {
       "vision": true,
       "tooluse": false,
@@ -8938,11 +8983,6 @@
       "tooluse": false,
       "reasoning": false
     },
-    "mistral/mistral-large-2512": {
-      "vision": true,
-      "tooluse": true,
-      "reasoning": false
-    },
     "mistral/ministral-3b-2512": {
       "vision": true,
       "tooluse": false,
@@ -9413,11 +9453,6 @@
       "tooluse": false,
       "reasoning": true
     },
-    "xai/grok-4.6": {
-      "vision": true,
-      "tooluse": true,
-      "reasoning": true
-    },
     "qwen/qwen3.5-flash": {
       "vision": true,
       "tooluse": true,
@@ -9458,11 +9493,6 @@
       "tooluse": true,
       "reasoning": false
     },
-    "mistral/devstral-2512": {
-      "vision": false,
-      "tooluse": true,
-      "reasoning": false
-    },
     "mistral/pixtral-large-latest": {
       "vision": true,
       "tooluse": true,
@@ -9498,6 +9528,11 @@
       "tooluse": true,
       "reasoning": false
     },
+    "deepseek-v4-flash-0731-284b": {
+      "vision": false,
+      "tooluse": true,
+      "reasoning": true
+    },
     "gemma4-26b": {
       "vision": true,
       "tooluse": true,
@@ -9515,11 +9550,6 @@
     },
     "kimi-k2.7-code-1100b": {
       "vision": true,
-      "tooluse": true,
-      "reasoning": true
-    },
-    "minimax-m2.5-230b": {
-      "vision": false,
       "tooluse": true,
       "reasoning": true
     },
@@ -13365,7 +13395,7 @@
     },
     "deepinfra/deepseek-ai/DeepSeek-V4-Pro-0813": {
       "vision": false,
-      "tooluse": false,
+      "tooluse": true,
       "reasoning": true
     },
     "deepinfra/deepseek-ai/DeepSeek-V3": {
@@ -13660,11 +13690,6 @@
     },
     "scaleway/deepseek-v4-flash-0731": {
       "vision": false,
-      "tooluse": true,
-      "reasoning": true
-    },
-    "mistral/mistral-small-2603": {
-      "vision": true,
       "tooluse": true,
       "reasoning": true
     },
