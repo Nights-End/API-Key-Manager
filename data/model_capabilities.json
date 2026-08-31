@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-08-30T07:57:36.396926+00:00",
+  "updated_at": "2026-08-31T08:11:03.967748+00:00",
   "source": "https://models.dev/api.json",
   "models": {
     "deepseek/deepseek-v4-flash": {
@@ -598,6 +598,11 @@
       "tooluse": true,
       "reasoning": true
     },
+    "glm-5.3": {
+      "vision": false,
+      "tooluse": true,
+      "reasoning": true
+    },
     "glm-5.2-short-fast-flex": {
       "vision": false,
       "tooluse": true,
@@ -690,11 +695,6 @@
     },
     "qwen3.8-flash": {
       "vision": true,
-      "tooluse": true,
-      "reasoning": true
-    },
-    "glm-5.3": {
-      "vision": false,
       "tooluse": true,
       "reasoning": true
     },
@@ -2383,11 +2383,6 @@
       "tooluse": true,
       "reasoning": true
     },
-    "claude-opus-4-thinking:32000": {
-      "vision": true,
-      "tooluse": true,
-      "reasoning": true
-    },
     "doubao-1.5-vision-pro-32k": {
       "vision": true,
       "tooluse": false,
@@ -2669,11 +2664,6 @@
       "reasoning": true
     },
     "gemma-4-26b-a4b-it-shadowsiren": {
-      "vision": true,
-      "tooluse": true,
-      "reasoning": true
-    },
-    "claude-opus-4-1-thinking:32000": {
       "vision": true,
       "tooluse": true,
       "reasoning": true
@@ -6722,6 +6712,11 @@
       "vision": true,
       "tooluse": false,
       "reasoning": false
+    },
+    "sensenova-6.8-flash-lite": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
     },
     "glm-4.5-flash": {
       "vision": false,
@@ -11798,11 +11793,6 @@
       "tooluse": true,
       "reasoning": true
     },
-    "gpt-5.3-chat": {
-      "vision": true,
-      "tooluse": true,
-      "reasoning": true
-    },
     "ring-2.6-1t": {
       "vision": false,
       "tooluse": true,
@@ -12233,32 +12223,37 @@
       "tooluse": true,
       "reasoning": false
     },
-    "cheap": {
+    "trustedrouter/cheap": {
       "vision": true,
       "tooluse": true,
       "reasoning": true
     },
-    "fast": {
+    "trustedrouter/fast": {
       "vision": true,
       "tooluse": true,
       "reasoning": true
     },
-    "synth-code": {
+    "trustedrouter/auto": {
       "vision": true,
       "tooluse": true,
       "reasoning": true
     },
-    "e2e": {
+    "trustedrouter/synth-code": {
       "vision": true,
       "tooluse": true,
       "reasoning": true
     },
-    "zdr": {
+    "trustedrouter/e2e": {
       "vision": true,
       "tooluse": true,
       "reasoning": true
     },
-    "synth": {
+    "trustedrouter/zdr": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
+    },
+    "trustedrouter/synth": {
       "vision": true,
       "tooluse": true,
       "reasoning": true
@@ -13792,6 +13787,11 @@
       "vision": false,
       "tooluse": true,
       "reasoning": true
+    },
+    "minimax/minimax-h3-max": {
+      "vision": true,
+      "tooluse": false,
+      "reasoning": false
     },
     "deepinfra/nemotron-3-ultra-550b-a55b": {
       "vision": false,
