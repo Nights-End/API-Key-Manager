@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-05T06:43:48.889764+00:00",
+  "updated_at": "2026-09-06T06:54:16.572024+00:00",
   "source": "https://models.dev/api.json",
   "models": {
     "subconscious/glm-5.2": {
@@ -8473,6 +8473,11 @@
       "tooluse": true,
       "reasoning": true
     },
+    "inkling": {
+      "vision": true,
+      "tooluse": true,
+      "reasoning": true
+    },
     "qwen3.6-max": {
       "vision": false,
       "tooluse": true,
@@ -8784,11 +8789,6 @@
       "reasoning": true
     },
     "gemini-3.5-flash-lite@eu": {
-      "vision": true,
-      "tooluse": true,
-      "reasoning": true
-    },
-    "inkling": {
       "vision": true,
       "tooluse": true,
       "reasoning": true
@@ -15405,6 +15405,11 @@
     },
     "databricks/databricks-deepseek-v4-flash-0731": {
       "vision": false,
+      "tooluse": true,
+      "reasoning": true
+    },
+    "databricks/databricks-inkling": {
+      "vision": true,
       "tooluse": true,
       "reasoning": true
     },
