@@ -1,6 +1,6 @@
-﻿/**
+/**
  * Pure utility functions for the frontend.
- * Extracted from templates/index.html 鈥?no DOM access.
+ * Extracted from templates/index.html — no DOM access.
  */
 
 import { ERROR_TRANSLATIONS, ERROR_TYPE_TRANSLATIONS } from './state.js';
@@ -52,11 +52,11 @@ export function translateErrorType(errorType) {
  */
 export function getTypeLabel(type) {
   const labels = {
-    'all': '鍏ㄩ儴妯″瀷',
-    'reasoning': '鎺ㄧ悊妯″瀷',
-    'vision': '瑙嗚妯″瀷',
-    'websearch': '鑱旂綉妯″瀷',   // kept for backward compat, deprecated
-    'tooluse': '宸ュ叿璋冪敤',
+    'all': '全部模型',
+    'reasoning': '推理模型',
+    'vision': '视觉模型',
+    'websearch': '联网模型',   // kept for backward compat, deprecated
+    'tooluse': '工具调用',
   };
   return labels[type] || type;
 }
@@ -67,19 +67,20 @@ export function getTypeLabel(type) {
  * @returns {{ friendly: string, maxTokens: number|null, suggestion?: string }}
  */
 export function parseTokenError(errorMsg) {
-  if (!errorMsg) return { friendly: '鏈煡閿欒', maxTokens: null };
+  if (!errorMsg) return { friendly: '未知错误', maxTokens: null };
   const rangeMatch = errorMsg.match(/\[(\d+),\s*(\d+)\]/);
   if (rangeMatch) {
     const min = parseInt(rangeMatch[1]);
     const max = parseInt(rangeMatch[2]);
     return {
-      friendly: 'Token鏁拌秴鍑鸿寖鍥?,
+      friendly: 'Token数超出范围',
       maxTokens: max,
-      suggestion: '鏈夋晥鑼冨洿: ' + min.toLocaleString() + ' - ' + max.toLocaleString(),
+      suggestion: '有效范围: ' + min.toLocaleString() + ' - ' + max.toLocaleString(),
     };
   }
   if (errorMsg.includes('max_tokens')) {
-    return { friendly: 'Token鏁版棤鏁?, maxTokens: null, suggestion: '璇锋鏌oken鍊兼槸鍚︽纭? };
+    return { friendly: 'Token数无效', maxTokens: null, suggestion: '请检查Token值是否正确' };
   }
   return { friendly: errorMsg, maxTokens: null };
 }
+
