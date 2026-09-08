@@ -21,11 +21,12 @@ export async function checkManualKey() {
   const key = keyInput.value.trim();
   if (!key) { _toast.showToast('请输入 Key', 'error'); return; }
   const customUrl = document.getElementById('custom-base-url').value.trim();
+  const note = (document.getElementById('manual-note')?.value || '').trim();
 
   resultEl.innerHTML = '<div class="result-card"><div style="color: var(--neon-cyan); display: flex; align-items: center; gap: 10px;"><div class="progress-spinner" style="width: 20px; height: 20px;"></div> 检测中...</div></div>';
 
   try {
-    const body = {key, provider: providerSel.value, custom_base_url: customUrl || null};
+    const body = {key, provider: providerSel.value, custom_base_url: customUrl || null, note: note || null};
     const data = await safeFetch('/api/check/single', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body) });
     if (data.error && !data.status) {
       resultEl.innerHTML = `<div class="result-card"><div style="color: var(--neon-red);">${data.error}</div></div>`;

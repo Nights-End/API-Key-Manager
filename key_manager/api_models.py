@@ -115,6 +115,7 @@ class CheckSingleRequest(BaseModel):
     provider: str = Field("", description="Provider name (auto-detected if empty)")
     model: str | None = Field(None, description="Specific model to test (tests all if empty)")
     custom_base_url: str | None = Field(None, description="Override provider base URL")
+    note: str | None = Field(None, description="User note to attach to the key on import")
 
     model_config = {
         "json_schema_extra": {

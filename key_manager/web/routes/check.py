@@ -241,6 +241,8 @@ async def api_check_single(body: CheckSingleRequest):
                         "last_tested": None,
                         "created_at": timestamp,
                     }
+                    if body.note:
+                        keys_dict[key]["note"] = body.note.strip()[:120]
                     _app_mod._save_keys_data(data)
                     get_project_logger().log_web_action("auto_import", f"{mask_key(key)} from check")
                 else:
