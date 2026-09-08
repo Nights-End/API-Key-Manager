@@ -359,3 +359,50 @@ async def api_set_note(request: Request):
         code=ErrorCode.VALIDATION_KEY_NOT_FOUND,
         message="Key not found",
     )
+
+
+@router.post("/api/keys/set-provider")
+async def api_set_provider(request: Request):
+    """Set a provider override for a key by key_masked (enables provider filtering)."""
+    try:
+        body = await request.json()
+        key_masked = str(body.get("key_masked", "")).strip()
+        provider = str(body.get("provider", "")).strip()
+    except Exception:
+        raise ValidationError(
+            code=ErrorCode.VALIDATION_MISSING_KEY,
+            message="key_masked is required",
+        ) from None
+
+    if not key_masked:
+        raise ValidationError(
+            code=ErrorCode.VALIDATION_MISSING_KEY,
+            message="key_masked is required",
+        )
+    if not provider:
+        raise ValidationError(
+            code=ErrorCode.VALIDATION_INVALID_FORMAT,
+            message="provider is required",
+        )
+    if len(provider) > 64:
+        raise ValidationError(
+            code=ErrorCode.VALIDATION_INVALID_FORMAT,
+            message="provider too long (max 64 chars)",
+        )
+
+    data = _app_mod._load_keys_data()
+    keys_dict = data.get("keys", {})
+
+    for full_key, info in keys_dict.items():
+        if info.get("key_masked") == key_masked:
+            info["provider"] = provider
+            info["provider_detected"] = None
+            info["status"] = "unknown"
+            _app_mod._save_keys_data(data)
+            get_project_logger().log_web_action("set_provider", f"{key_masked}: {provider}")
+            return {"ok": True, "key_masked": key_masked, "provider": provider}
+
+    raise ValidationError(
+        code=ErrorCode.VALIDATION_KEY_NOT_FOUND,
+        message="Key not found",
+    )
