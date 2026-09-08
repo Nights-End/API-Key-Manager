@@ -191,6 +191,7 @@ async def api_list_keys(
             tests=info.get("tests", {}),
             models=info.get("tests", {}).get("models", []),
             sources_count=len(info.get("sources", [])),
+            note=info.get("note"),
             balance=info.get("balance"),
         ))
 
@@ -310,6 +311,49 @@ async def api_delete_key(request: Request):
         _app_mod._save_keys_data(data)
         get_project_logger().log_web_action("delete", key_masked)
         return {"deleted": 1, "key_masked": key_masked}
+
+    raise ValidationError(
+        code=ErrorCode.VALIDATION_KEY_NOT_FOUND,
+        message="Key not found",
+    )
+
+
+@router.post("/api/keys/set-note")
+async def api_set_note(request: Request):
+    """Set or clear a user-defined note (label/remark) for a key by key_masked."""
+    try:
+        body = await request.json()
+        key_masked = str(body.get("key_masked", "")).strip()
+        note = str(body.get("note", "")).strip()
+    except Exception:
+        raise ValidationError(
+            code=ErrorCode.VALIDATION_MISSING_KEY,
+            message="key_masked is required",
+        ) from None
+
+    if not key_masked:
+        raise ValidationError(
+            code=ErrorCode.VALIDATION_MISSING_KEY,
+            message="key_masked is required",
+        )
+    if len(note) > 120:
+        raise ValidationError(
+            code=ErrorCode.VALIDATION_INVALID_FORMAT,
+            message="note too long (max 120 chars)",
+        )
+
+    data = _app_mod._load_keys_data()
+    keys_dict = data.get("keys", {})
+
+    for full_key, info in keys_dict.items():
+        if info.get("key_masked") == key_masked:
+            if note:
+                info["note"] = note
+            else:
+                info.pop("note", None)
+            _app_mod._save_keys_data(data)
+            get_project_logger().log_web_action("set_note", key_masked)
+            return {"ok": True, "key_masked": key_masked, "note": note or None}
 
     raise ValidationError(
         code=ErrorCode.VALIDATION_KEY_NOT_FOUND,

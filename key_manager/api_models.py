@@ -59,6 +59,7 @@ class KeyInfo(BaseModel):
     tests: dict[str, Any] = Field(default_factory=dict, description="Test results (max_tokens, max_concurrency)")
     models: list[str] = Field(default_factory=list, description="Available models")
     sources_count: int = Field(0, description="Number of import sources")
+    note: str | None = Field(None, description="User-defined label/remark for this key")
     balance: float | None = Field(None, description="Account balance if available")
 
 

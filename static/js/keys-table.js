@@ -24,13 +24,13 @@ export function filterKeys() {
 
 export function renderKeys() {
     let fk = State.allKeys;
-    if (State.searchQuery) fk = fk.filter(k => (k.key || k.key_masked).toLowerCase().includes(State.searchQuery) || k.key_masked.toLowerCase().includes(State.searchQuery) || k.provider.toLowerCase().includes(State.searchQuery));
+    if (State.searchQuery) fk = fk.filter(k => (k.key || k.key_masked).toLowerCase().includes(State.searchQuery) || k.key_masked.toLowerCase().includes(State.searchQuery) || k.provider.toLowerCase().includes(State.searchQuery) || (k.note || '').toLowerCase().includes(State.searchQuery));
 
     const tbody = document.getElementById('keys-table');
     document.getElementById('table-title').textContent = `${State.TAB_TITLES[State.currentTab]} (第${State.currentPage}页, 共${State.totalCount}条)`;
 
     if (fk.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 7a2 2 0 0 1 2 2m4 0a6 6 0 0 1-7.743 5.743L11 17H9v2H7v2H4a1 1 0 0 1-1-1v-2.586a1 1 0 0 1 .293-.707l5.964-5.964A6 6 0 1 1 21 9z"/></svg><h3>暂无数据</h3><p>当前筛选条件下没有 Key</p></div></td></tr>';
+        tbody.innerHTML = '<tr><td colspan="10"><div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 7a2 2 0 0 1 2 2m4 0a6 6 0 0 1-7.743 5.743L11 17H9v2H7v2H4a1 1 0 0 1-1-1v-2.586a1 1 0 0 1 .293-.707l5.964-5.964A6 6 0 1 1 21 9z"/></svg><h3>暂无数据</h3><p>当前筛选条件下没有 Key</p></div></td></tr>';
         updatePagination();
         return;
     }
@@ -57,6 +57,7 @@ export function renderKeys() {
 
         return `<tr style="animation: fadeInRow 0.3s ease ${idx * 0.02}s both;">
                     <td><div class="key-cell" onclick="copyKey('${escAttr(k.key_masked)}')" title="点击复制">${dk}</div></td>
+                    <td><div class="note-cell" onclick="editKeyNote('${escAttr(k.key_masked)}', this)" title="点击编辑备注">${k.note ? esc(k.note) : '<span class="note-placeholder">＋备注</span>'}</div></td>
                     <td><span class="provider-chip" onclick="showProviderDetail('${escAttr(k.provider)}')" style="cursor: pointer;" title="点击查看服务商详情">${State.DISPLAY_NAMES[k.provider] || k.provider}</span></td>
                     <td>${sd}</td>
                     <td>${md}</td>
@@ -105,6 +106,41 @@ export function toggleKeyDisplay() {
     document.getElementById('show-key-toggle').classList.toggle('active');
     // Reload keys with full key data when showing full keys
     import('./api/keys.js').then(api => api.loadKeys());
+}
+
+export function editKeyNote(key_masked, cellEl) {
+    if (cellEl.querySelector('input')) return;  // already editing
+    const oldNote = cellEl.dataset.note || (cellEl.textContent === '＋备注' ? '' : cellEl.textContent.trim());
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = oldNote;
+    input.maxLength = 120;
+    input.style.cssText = 'width:100%;background:var(--surface-2);color:var(--text-primary);border:1px solid var(--neon-cyan);border-radius:4px;padding:2px 6px;font-size:12px;font-family:inherit;';
+    cellEl.textContent = '';
+    cellEl.appendChild(input);
+    input.focus();
+    let done = false;
+    const commit = async () => {
+        if (done) return; done = true;
+        const note = input.value.trim();
+        try {
+            await safeFetch('/api/keys/set-note', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ key_masked: key_masked, note: note })
+            });
+            showToast(note ? '备注已保存' : '备注已清除', 'success');
+        } catch (e) {
+            showToast('保存失败: ' + e.message, 'error');
+        }
+        import('./api/keys.js').then(api => api.loadKeys());
+    };
+    const cancel = () => { if (done) return; done = true; import('./api/keys.js').then(api => api.loadKeys()); };
+    input.addEventListener('keydown', ev => {
+        if (ev.key === 'Enter') commit();
+        else if (ev.key === 'Escape') cancel();
+    });
+    input.addEventListener('blur', commit);
 }
 
 export function copyKey(key_masked) {
