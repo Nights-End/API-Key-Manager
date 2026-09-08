@@ -162,11 +162,18 @@ async def web_ui(request: Request):
     import os
 
     api_token = ""
-    try:
-        from key_manager.storage import derive_api_token
-        api_token = derive_api_token(config)
-    except Exception:
-        pass
+    # Priority must match middleware auth: explicit env KEY_MANAGER_API_KEY first,
+    # else derive from encryption passphrase. Using derive here but env in middleware
+    # caused the page's token to never match the server's accepted token → all 401.
+    env_token = os.environ.get("KEY_MANAGER_API_KEY", "").strip()
+    if env_token:
+        api_token = env_token
+    else:
+        try:
+            from key_manager.storage import derive_api_token
+            api_token = derive_api_token(config)
+        except Exception:
+            pass
 
     is_desktop = os.environ.get("KEYHUB_DESKTOP") == "1"
 
